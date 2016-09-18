@@ -3,7 +3,9 @@ package org.fleen.util.tag;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /*
  * It handles tags. So we can tag stuff. Specifically, polygon nodes and grammar elements
@@ -31,41 +33,61 @@ public class TagManager implements Serializable{
    * ################################
    */
   
+  //we use an array for compactness
   private String[] tags=new String[0];
   
-  public String[] getTags(){
-    return tags;}
+  //SET
   
-  //rather than just setting the tags array we copy it, to break the reference
-  public void setTags(String[] tags){
-    this.tags=new String[tags.length];
-    System.arraycopy(tags,0,this.tags,0,tags.length);}
+  public void setTags(String... tags){
+    setTags(Arrays.asList(tags));}
+  
+  public void setTags(List<String> tags){
+    this.tags=tags.toArray(new String[tags.size()]);}
+  
+  //GET
+
+  public List<String> getTags(){
+    return new ArrayList<String>(Arrays.asList(tags));}
+  
+  //HAS
+
+  public boolean hasTags(List<String> tags){
+    for(String tag:tags)
+      if(!hasTag(tag))
+        return false;
+    return true;}
+  
+  public boolean hasTags(String... tags){
+    for(String tag:tags)
+      if(!hasTag(tag))
+        return false;
+    return true;}
   
   public boolean hasTag(String tag){
     for(String t:tags)
       if(t.equals(tag))return true;
     return false;}
   
-  public boolean hasTags(String[] tags){
-    for(String tag:tags)
-      if(!hasTag(tag))
-        return false;
-    return true;}
+  //ADD
   
-  public void addTag(String tag){
-    List<String> a=new ArrayList<String>(Arrays.asList(tags));
-    a.add(tag);
-    tags=a.toArray(new String[a.size()]);}
+  public void addTags(String... tags){
+    addTags(Arrays.asList(tags));}
   
-  public void addTags(String[] tags){
-    List<String> a=new ArrayList<String>(Arrays.asList(this.tags));
-    a.addAll(Arrays.asList(tags));
+  //use a set to handle dupes
+  public void addTags(List<String> tags){
+    Set<String> a=new HashSet<String>(Arrays.asList(this.tags));
+    a.addAll(tags);
     this.tags=a.toArray(new String[a.size()]);}
   
-  public void removeTag(String tag){
-    List<String> a=new ArrayList<String>(Arrays.asList(tags));
-    a.remove(tag);
-    tags=a.toArray(new String[a.size()]);}
+  //REMOVE
+  
+  public void removeTags(String... tags){
+    removeTags(Arrays.asList(tags));}
+  
+  public void removeTags(List<String> tags){
+    Set<String> a=new HashSet<String>(Arrays.asList(this.tags));
+    a.removeAll(tags);
+    this.tags=a.toArray(new String[a.size()]);}
   
   /*
    * ################################
