@@ -47,6 +47,11 @@ public class TreeNodeServices{
   public boolean hasChildren(){
     return children.length>0;}
   
+  public void removeChild(TreeNode child){
+    List<TreeNode> a=new ArrayList<TreeNode>(Arrays.asList(children));
+    a.remove(child);
+    children=a.toArray(new TreeNode[a.size()]);}
+  
   public void removeChildren(Collection<? extends TreeNode> c){
     List<TreeNode> a=new ArrayList<TreeNode>(Arrays.asList(children));
     a.removeAll(c);

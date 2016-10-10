@@ -30,6 +30,8 @@ public interface TreeNode{
   
   boolean hasChildren();
   
+  void removeChild(TreeNode child);
+  
   void removeChildren(Collection<? extends TreeNode> children);
   
   void clearChildren();

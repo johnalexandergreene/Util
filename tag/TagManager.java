@@ -75,6 +75,7 @@ public class TagManager implements Serializable{
   
   //use a set to handle dupes
   public void addTags(List<String> tags){
+    if(tags==null)return;
     Set<String> a=new HashSet<String>(Arrays.asList(this.tags));
     a.addAll(tags);
     this.tags=a.toArray(new String[a.size()]);}
