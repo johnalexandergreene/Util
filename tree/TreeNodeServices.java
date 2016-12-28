@@ -72,9 +72,9 @@ public class TreeNodeServices{
   public int getDepth(TreeNode node){
     int c=0;
     TreeNode n=node;
-    while(n!=null){
-      n=n.getParent();
-      if(n!=null)c++;}
+    while(n.getParent()!=null){
+      c++;
+      n=n.getParent();}
     return c;}
   
   public TreeNode getRoot(TreeNode node){
