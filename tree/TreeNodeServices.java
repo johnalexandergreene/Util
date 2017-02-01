@@ -1,5 +1,6 @@
 package org.fleen.util.tree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -8,8 +9,10 @@ import java.util.List;
 /*
  * we wrap one of these to implement all of the treenode methods
  */
-public class TreeNodeServices{
+public class TreeNodeServices implements Serializable{
   
+  private static final long serialVersionUID=6396974348380889560L;
+
 //  DefaultMutableTreeNode a;//for debug
   
   private TreeNode parent=null;

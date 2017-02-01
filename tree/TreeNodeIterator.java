@@ -1,5 +1,6 @@
 package org.fleen.util.tree;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -9,8 +10,10 @@ import java.util.LinkedList;
  * we can skip arbitrary nodes
  * we can block arbitrary nodes, excluding the tree rooted at that node from traversal
  */
-public class TreeNodeIterator implements Iterator<TreeNode>{
+public class TreeNodeIterator implements Iterator<TreeNode>, Serializable{
   
+  private static final long serialVersionUID=4041668630049238695L;
+
   /*
    * ################################
    * CONSTRUCTOR
