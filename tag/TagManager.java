@@ -38,12 +38,16 @@ public class TagManager implements Serializable{
   
   //SET
   
+  public void clear(){
+    tags=new String[0];}
+  
   public void setTags(String... tags){
     if(tags!=null)
       setTags(Arrays.asList(tags));}
   
   public void setTags(List<String> tags){
-    this.tags=tags.toArray(new String[tags.size()]);}
+    if(tags!=null)
+      this.tags=tags.toArray(new String[tags.size()]);}
   
   //GET
 
@@ -53,6 +57,7 @@ public class TagManager implements Serializable{
   //HAS
 
   public boolean hasTags(List<String> tags){
+    if(tags==null||tags.isEmpty())return true;
     for(String tag:tags)
       if(!hasTag(tag))
         return false;
@@ -66,6 +71,7 @@ public class TagManager implements Serializable{
     return true;}
   
   public boolean hasTag(String tag){
+    if(tag==null)return true;
     for(String t:tags)
       if(t.equals(tag))return true;
     return false;}
