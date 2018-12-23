@@ -25,6 +25,8 @@ public interface Tagged{
   /*
    * return true if all specified tags are present
    */
+  boolean hasTag(String tag);
+  
   boolean hasTags(String... tags);
   
   boolean hasTags(List<String> tags);
@@ -33,6 +35,8 @@ public interface Tagged{
    * add specified tags
    * no dupes
    */
+  void addTag(String tag);
+  
   void addTags(String... tags);
   
   void addTags(List<String> tags);
@@ -41,6 +45,8 @@ public interface Tagged{
    * remove specified tags
    * if nonexistent then nothing happens
    */
+  void removeTag(String tag);
+  
   void removeTags(String... tags);
   
   void removeTags(List<String> tags);
